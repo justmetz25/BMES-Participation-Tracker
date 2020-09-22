@@ -1,4 +1,4 @@
-class EventController < ApplicationController
+class EventsController < ApplicationController
   def delete
     @event = Event.find(params[:id])
   end

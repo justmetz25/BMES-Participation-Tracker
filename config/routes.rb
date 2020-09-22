@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'event#index'
+  root 'events#index'
 
   resources :events do
     member do
@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'event/delete'
-  get 'event/edit'
-  get 'event/index'
-  get 'event/new'
-  get 'event/show'
-  get 'event/homepage'
+  get 'events/delete'
+  get 'events/edit'
+  get 'events/index'
+  get 'events/new'
+  get 'events/show'
+  get 'events/homepage'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
