@@ -16,7 +16,7 @@ class EventController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def homepage
