@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  root 'books#index'
+
+  resources :events do
+    member do
+      get :delete
+    end
+  end
+
   get 'event/delete'
   get 'event/edit'
   get 'event/index'
