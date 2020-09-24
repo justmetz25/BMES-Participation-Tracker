@@ -1,5 +1,9 @@
-<h1>Participation#index</h1>
+<h1>Participation#new</h1>
 <p>Find me in app/views/participation/index.html.erb</p>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 
 <%= form_for(@participation) do |f| %>
 
@@ -7,6 +11,10 @@
       <tr>
         <th>Event ID</th>
         <td><%= number_field_tag(:event_id) %></td>
+      </tr>
+      <tr>
+        <th>Password</td>
+        <td><%= text_field_tag(:event_pass) %></td>
       </tr>
       <tr>
         <th>UIN</th>
