@@ -19,6 +19,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @count = Participation.where("\"#{@event.uuid}\" = true")
   end
 
   def homepage
