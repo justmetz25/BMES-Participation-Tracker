@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class EventsController < ApplicationController
   def delete
     @event = Event.find(params[:id])
@@ -17,6 +19,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @count = Participation.where("\"#{@event.uuid}\" = true")
   end
 
   def homepage
@@ -25,6 +28,8 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    # ActiveRecord::Migration.remove_column :participations, "#{@event.uuid}", :boolean
+    ActiveRecord::Migration.remove_column :participations, "#{@event.title.gsub(" ", "_")}_#{@event.id}", :boolean
     @event.destroy
     flash[:notice] = "Event '#{@event.title}' destroyed successfully."
     redirect_to(events_path)
@@ -43,8 +48,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    # @event.uuid = SecureRandom.uuid.gsub("-", "")
+    # ActiveRecord::Migration.add_column :participations, "#{@event.uuid}", :boolean, :null => false, :default => false
 
     if @event.save
+      ActiveRecord::Migration.add_column :participations, "#{@event.title.gsub(" ", "_")}_#{@event.id}", :boolean, :null => false, :default => false
       flash[:notice] = "Event created successfully."
       redirect_to(events_path)
     else

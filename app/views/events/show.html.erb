@@ -35,4 +35,23 @@
       <td><%= @event.eventpass %></td>
     </tr>
   </table>
+
+  Attendees
+  <table>
+  <tr>
+    <th>UIN</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+  </tr>
+  <% @count.each do |c| %>
+    <tr>
+      <td><%= c.uin %></td>
+      <td><%= c.first_name %></td>
+      <td><%= c.last_name %></td>
+      <td><%= c.email %></td>
+    </tr>
+  <% end %>
+  </td>
+  </table>
 </div>

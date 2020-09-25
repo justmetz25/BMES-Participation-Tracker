@@ -1,0 +1,41 @@
+<h1>Participation#new</h1>
+<p>Find me in app/views/participation/index.html.erb</p>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<%= form_for(@participation) do |f| %>
+
+    <table summary="Participation form fields">
+      <tr>
+        <th>Event ID</th>
+        <td><%= number_field_tag(:event_id) %></td>
+      </tr>
+      <tr>
+        <th>Password</td>
+        <td><%= text_field_tag(:event_pass) %></td>
+      </tr>
+      <tr>
+        <th>UIN</th>
+        <td><%= f.number_field(:uin) %></td>
+      </tr>
+      <tr>
+        <th>First Name</th>
+        <td><%= f.text_field(:first_name) %></td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td><%= f.text_field(:last_name) %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= f.text_field(:email) %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= f.submit("Sign In") %>
+    </div>
+
+  <% end %>
