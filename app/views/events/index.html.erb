@@ -8,7 +8,7 @@
 <div class="events index">
   <h2>Events</h2>
 
-  <%= link_to("Add New Event", new_event_path, :class => 'action new') %>
+  <%= link_to("Admin Login", new_admin_user_session_path) %>
 
   <table class="listing" summary="event list">
     <tr class="header">
@@ -17,20 +17,17 @@
       <th>Description</th>
       <th>Start Time</th>
       <th>End Time</th>
-      <th>Event Pass</th>
     </tr>
     <% @events.each do |event| %>
     <tr>
       <td><%= event.title %></td>
       <td><%= event.place %></td>
       <td><%= event.description %></td>
-      <td><%= event.starttime.strftime("%h %M %p %m-%d-%Y") %></td>
-      <td><%= event.endtime.strftime("%h %M %p %m-%d-%Y") %></td>
-      <td><%= event.eventpass %></td>
+      <td><%= event.starttime.strftime("%I %M %p %h-%d-%Y") %></td>
+      <td><%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></td>
       <td class="actions">
         <%= link_to("Show", event_path(event), :class => 'action show') %>
-        <%= link_to("Edit", edit_event_path(event), :class => 'action edit') %>
-        <%= link_to("Delete", delete_event_path(event), :class => 'action delete') %>
+        <%= link_to("Sign in to event", :controller => "participations", :action => "new") %>
       </td>
     </tr>
     <% end %>
