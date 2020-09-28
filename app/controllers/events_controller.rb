@@ -22,7 +22,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @count = Participation.where(@event.id)
+    # @count = Participation.all
+    @count = Participation.where(:event_id => params[:id])
+    # @count = Participation.all(:condition => ["event_id == :event", { :event => params[:id]}])
   end
 
   def homepage

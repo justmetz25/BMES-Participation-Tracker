@@ -24,6 +24,6 @@ class ParticipationsController < ApplicationController
   end
 
   def participation_params
-    params.require(:participation).permit(:uin, :first_name, :last_name, :email, :event_id, :event_pass)
+    params.require(:participation).permit(:uin, :first_name, :last_name, :email, :event_pass).merge(event_id: @event.id)
   end
 end
