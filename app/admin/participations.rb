@@ -5,7 +5,7 @@ ActiveAdmin.register Participation do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-   permit_params :uin, :first_name, :last_name, :email
+   permit_params :uin, :first_name, :last_name, :email, :event_id
   #
   # or
   #
