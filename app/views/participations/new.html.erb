@@ -14,23 +14,23 @@
       </tr>
       <tr>
         <th>Password</td>
-        <td><%= text_field_tag(:event_pass) %></td>
+        <td><%= text_field_tag(:event_pass, nil, required: true) %></td>
       </tr>
       <tr>
         <th>UIN</th>
-        <td><%= f.number_field(:uin) %></td>
+        <td><%= f.number_field(:uin, required: true) %></td>
       </tr>
       <tr>
         <th>First Name</th>
-        <td><%= f.text_field(:first_name) %></td>
+        <td><%= f.text_field(:first_name, required: true) %></td>
       </tr>
       <tr>
         <th>Last Name</th>
-        <td><%= f.text_field(:last_name) %></td>
+        <td><%= f.text_field(:last_name, required: true) %></td>
       </tr>
       <tr>
         <th>Email</th>
-        <td><%= f.text_field(:email) %></td>
+        <td><%= f.text_field(:email, required: true) %></td>
       </tr>
     </table>
 
