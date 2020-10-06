@@ -70,3 +70,5 @@ yarn-debug.log*
 /public/uploads
 
 config/database.yml
+
+coverage/*
