@@ -1,7 +1,5 @@
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
 
@@ -29,7 +27,7 @@
       <td><%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></td>
       <td class="actions">
         <%= link_to("Show", event_path(event), :class => 'action show') %>
-        <%= link_to("Sign in to event", :controller => "participations", :action => "new") %>
+        <%= link_to("Sign in to event", :controller => "participations", :action => "new", :event_id => event.id) %>
       </td>
     </tr>
     <% end %>
