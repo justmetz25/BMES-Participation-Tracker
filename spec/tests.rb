@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Login page', type: :system do
     describe 'Login' do
         it 'Success' do
+            @ad = AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+            @ad.save
             visit new_admin_user_session_path
             fill_in('admin_user[email]', :with => 'admin@example.com')
             fill_in('admin_user[password]', :with => 'password')
@@ -32,7 +34,6 @@ RSpec.describe 'Event page', type: :system do
             expect(page).to have_selector(:link_or_button, 'Sign in to event')
 
             expect(page).to have_content('Events')
-            expect(page).to have_content('ID')
             expect(page).to have_content('Title')
             expect(page).to have_content('Place')
             expect(page).to have_content('Description')
@@ -83,7 +84,6 @@ RSpec.describe 'Participation Page', type: :system do
             visit events_path
             click_link('Sign in to event')
 
-            fill_in('event_id', :with => '1')
             fill_in('event_pass', :with => '1')
             fill_in('participation[uin]', :with => '666666666')
             fill_in('participation[first_name]', :with => 'John')
@@ -92,6 +92,7 @@ RSpec.describe 'Participation Page', type: :system do
             sleep(2)
 
             click_button('commit')
+            sleep(2)
             expect(page).to have_content('Successfully signed in')
             sleep(2)
         end
@@ -99,7 +100,6 @@ RSpec.describe 'Participation Page', type: :system do
             visit events_path
             click_link('Sign in to event')
 
-            fill_in('event_id', :with => '1')
             fill_in('event_pass', :with => '2')
             fill_in('participation[uin]', :with => '666666666')
             fill_in('participation[first_name]', :with => 'John')
@@ -108,6 +108,7 @@ RSpec.describe 'Participation Page', type: :system do
             sleep(2)
 
             click_button('commit')
+            sleep(2)
             expect(page).to have_content('Incorrect password')
             sleep(2)
         end
