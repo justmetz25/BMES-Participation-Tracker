@@ -25,7 +25,7 @@ end
 
 RSpec.describe 'Event page', type: :system do
     describe 'Visit Events' do
-        it 'Visit event homepage' do
+        it 'Homepage' do
             visit events_path
 
             expect(page).to have_selector(:link_or_button, 'Show')
@@ -41,7 +41,7 @@ RSpec.describe 'Event page', type: :system do
             
             sleep(2)
         end
-        it 'View specific event' do
+        it 'Specific event' do
             visit events_path
             sleep(2)
             click_link('Show')
@@ -61,6 +61,29 @@ RSpec.describe 'Event page', type: :system do
             click_link('Show')
             sleep(2)
             click_link('<< Back to List')
+            sleep(2)
+        end
+    end
+    describe 'View attendances' do
+        it 'Submit from Participation page' do
+            visit events_path
+            click_link('Sign in to event')
+    
+            fill_in('event_id', :with => '1')
+            fill_in('event_pass', :with => '1')
+            fill_in('participation[uin]', :with => '666666666')
+            fill_in('participation[first_name]', :with => 'John')
+            fill_in('participation[last_name]', :with => 'Doe')
+            fill_in('participation[email]', :with => 'jdoe@example.com')
+            sleep(2)
+    
+            click_button('commit')
+            visit events_path
+            click_link('Show')
+            expect(page).to have_content('666666666')
+            expect(page).to have_content('John')
+            expect(page).to have_content('Doe')
+            expect(page).to have_content('jdoe@example.com')
             sleep(2)
         end
     end
@@ -111,16 +134,72 @@ RSpec.describe 'Participation Page', type: :system do
             expect(page).to have_content('Incorrect password')
             sleep(2)
         end
-        # Need to figure out how to trigger failed validation and see the state
-        # it 'Password Input Validation Failed' do
-        #     visit events_path
-        #     click_link('Sign in to event')
+    end
+    describe 'Input Validation Fail' do
+        it 'Password' do
+            visit events_path
+            click_link('Sign in to event')
 
-        #     fill_in('event_id', :with => '1')
-        #     click_button('commit')
+            fill_in('event_id', :with => '1')
+            click_button('commit')
             
-        #     message = page.find('event_pass').native.attribute("validationMessage")
-        #     expect(message).to eq "Please fill out this field."
-        # end
+            message = page.find('#event_pass').native.attribute('validationMessage')
+            expect(message).to eq 'Please fill out this field.'
+            sleep(2)
+        end
+        it 'UIN' do
+            visit events_path
+            click_link('Sign in to event')
+
+            fill_in('event_id', :with => '1')
+            fill_in('event_pass', :with => '1')
+            click_button('commit')
+
+            message = page.find('#participation_uin').native.attribute('validationMessage')
+            expect(message).to eq 'Please fill out this field.'
+            sleep(2)
+        end
+        it 'First Name' do
+            visit events_path
+            click_link('Sign in to event')
+
+            fill_in('event_id', :with => '1')
+            fill_in('event_pass', :with => '1')
+            fill_in('participation[uin]', :with => '999999999')
+            click_button('commit')
+
+            message = page.find('#participation_first_name').native.attribute('validationMessage')
+            expect(message).to eq 'Please fill out this field.'
+            sleep(2)
+        end
+        it 'Last Name' do
+            visit events_path
+            click_link('Sign in to event')
+
+            fill_in('event_id', :with => '1')
+            fill_in('event_pass', :with => '1')
+            fill_in('participation[uin]', :with => '999999999')
+            fill_in('participation[first_name]', :with => 'Bob')
+            click_button('commit')
+
+            message = page.find('#participation_last_name').native.attribute('validationMessage')
+            expect(message).to eq 'Please fill out this field.'
+            sleep(2)
+        end
+        it 'Email' do
+            visit events_path
+            click_link('Sign in to event')
+
+            fill_in('event_id', :with => '1')
+            fill_in('event_pass', :with => '1')
+            fill_in('participation[uin]', :with => '999999999')
+            fill_in('participation[first_name]', :with => 'Bob')
+            fill_in('participation[last_name]', :with => 'Ross')
+            click_button('commit')
+
+            message = page.find('#participation_email').native.attribute('validationMessage')
+            expect(message).to eq 'Please fill out this field.'
+            sleep(2)
+        end
     end
 end
