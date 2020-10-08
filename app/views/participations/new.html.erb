@@ -7,12 +7,14 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<%= @id = params[:event_id] %>
+<% @id = params[:event_id] %>
 
 <%= form_for(@participation) do |f| %>
 
     <table summary="Participation form fields">
-      <%= f.hidden_field :event_id, value: @id %>
+      <tr>
+        <td><%= f.hidden_field(:event_id, value: @id,:readonly => true) %></td>
+      </tr>
       <tr>
         <th>Password</td>
         <td><%= text_field_tag(:event_pass) %></td>
