@@ -3,18 +3,21 @@
 <% end %>
 
 
+<body>
 <div class="events index">
-  <h2>Events</h2>
+
+  <image src = "https://umaine.edu/bioengineeringclub/wp-content/uploads/sites/457/2018/07/Biomedical-Engineering-Society-Logo-From-Facebook-Page-634x199.jpg" alt = "BMES Logo" width="400" height="175">
+  <h2 style = "background-color: #117099 ; color: white ; font-family: serif ; font-variant: small-caps ; font-size:300%">Events</h2>
 
   <%= link_to("Admin Login", new_admin_user_session_path) %>
 
   <table class="listing" summary="event list">
     <tr class="header">
-      <th>Title</th>
-      <th>Place</th>
-      <th>Description</th>
-      <th>Start Time</th>
-      <th>End Time</th>
+      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Title</th>
+      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Place</th>
+      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Description</th>
+      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Start Time</th>
+      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">End Time</th>
     </tr>
     <% @events.each do |event| %>
     <tr>
@@ -30,4 +33,5 @@
     </tr>
     <% end %>
   </table>
-</div> 
+</div>
+</body>
