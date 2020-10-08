@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Login page', type: :system do
     describe 'Login' do
         it 'Success' do
-            @ad = AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-            @ad.save
+            @admin = AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+            @admin.save
             visit new_admin_user_session_path
             fill_in('admin_user[email]', :with => 'admin@example.com')
             fill_in('admin_user[password]', :with => 'password')
