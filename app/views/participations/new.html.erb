@@ -1,0 +1,44 @@
+<%= link_to("<< Back to List", events_path, :class => 'back-link') %>
+
+<h1>Sign In To Event:</h1>
+<!-- Find me in app/views/participation/index.html.erb -->
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<% @id = params[:event_id] %>
+
+<%= form_for(@participation) do |f| %>
+
+    <table summary="Participation form fields">
+      <tr>
+        <td><%= f.hidden_field(:event_id, value: @id,:readonly => true) %></td>
+      </tr>
+      <tr>
+        <th>Password</td>
+        <td><%= text_field_tag(:event_pass, nil, required: true) %></td>
+      </tr>
+      <tr>
+        <th>UIN</th>
+        <td><%= f.number_field(:uin, required: true) %></td>
+      </tr>
+      <tr>
+        <th>First Name</th>
+        <td><%= f.text_field(:first_name, required: true) %></td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td><%= f.text_field(:last_name, required: true) %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= f.text_field(:email, required: true) %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= f.submit("Sign In") %>
+    </div>
+
+  <% end %>
