@@ -46,7 +46,7 @@ RSpec.describe 'Participation Page', type: :system do
         it 'Checks the url parameters' do
             visit events_path
             click_link('Sign in to event')
-            expect(page).to have_current_path(new_participation_path(event_id: '2'))
+            expect(page).to have_current_path(new_participation_path(event_id: '1'))
             sleep(2)
         end
     end
@@ -54,7 +54,7 @@ RSpec.describe 'Participation Page', type: :system do
         it 'With wrong password' do
             visit events_path
             click_link('Sign in to event')
-            expect(page).to have_current_path(new_participation_path(event_id: '2'))
+            expect(page).to have_current_path(new_participation_path(event_id: '1'))
             sleep(2)
             fill_in('event_pass', :with => '2')
             fill_in('participation[uin]', :with => '666666666')
@@ -66,7 +66,7 @@ RSpec.describe 'Participation Page', type: :system do
             click_button('commit')
             sleep(2)
             expect(page).to have_content('Incorrect password')
-            expect(page).to have_current_path(new_participation_path(event_id: '2'))
+            expect(page).to have_current_path(new_participation_path(event_id: '1'))
             sleep(2)
         end
     end
