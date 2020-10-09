@@ -1,3 +1,5 @@
+<%= link_to("<< Back to List", events_path, :class => 'back-link') %>
+
 <h1>Participation#new</h1>
 <p>Find me in app/views/participation/index.html.erb</p>
 
@@ -5,12 +7,13 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
+<% @id = params[:event_id] %>
+
 <%= form_for(@participation) do |f| %>
 
     <table summary="Participation form fields">
       <tr>
-        <th>Event ID</th>
-        <td><%= number_field_tag(:event_id) %></td>
+        <td><%= f.hidden_field(:event_id, value: @id,:readonly => true) %></td>
       </tr>
       <tr>
         <th>Password</td>
