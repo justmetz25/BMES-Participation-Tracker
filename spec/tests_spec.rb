@@ -70,7 +70,6 @@ RSpec.describe 'Event page', type: :system do
             visit events_path
             click_link('Sign in to event')
     
-            fill_in('event_id', :with => '1')
             fill_in('event_pass', :with => '1')
             fill_in('participation[uin]', :with => '666666666')
             fill_in('participation[first_name]', :with => 'John')
@@ -141,7 +140,6 @@ RSpec.describe 'Participation Page', type: :system do
             visit events_path
             click_link('Sign in to event')
 
-            fill_in('event_id', :with => '1')
             click_button('commit')
             
             message = page.find('#event_pass').native.attribute('validationMessage')
@@ -152,7 +150,6 @@ RSpec.describe 'Participation Page', type: :system do
             visit events_path
             click_link('Sign in to event')
 
-            fill_in('event_id', :with => '1')
             fill_in('event_pass', :with => '1')
             click_button('commit')
 
@@ -164,7 +161,6 @@ RSpec.describe 'Participation Page', type: :system do
             visit events_path
             click_link('Sign in to event')
 
-            fill_in('event_id', :with => '1')
             fill_in('event_pass', :with => '1')
             fill_in('participation[uin]', :with => '999999999')
             click_button('commit')
@@ -177,7 +173,6 @@ RSpec.describe 'Participation Page', type: :system do
             visit events_path
             click_link('Sign in to event')
 
-            fill_in('event_id', :with => '1')
             fill_in('event_pass', :with => '1')
             fill_in('participation[uin]', :with => '999999999')
             fill_in('participation[first_name]', :with => 'Bob')
@@ -191,7 +186,6 @@ RSpec.describe 'Participation Page', type: :system do
             visit events_path
             click_link('Sign in to event')
 
-            fill_in('event_id', :with => '1')
             fill_in('event_pass', :with => '1')
             fill_in('participation[uin]', :with => '999999999')
             fill_in('participation[first_name]', :with => 'Bob')
