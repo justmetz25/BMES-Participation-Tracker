@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   get 'events/new'
   get 'events/show'
   get 'events/homepage'
-  get 'participations/new'
+  # method 'participations/new/:id', to: 'participations#action'
+  # get 'participations/new/:id'
   # get 'events/:id/submit', action: :submit, controller: 'participation'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

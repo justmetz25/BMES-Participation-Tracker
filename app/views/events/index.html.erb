@@ -1,7 +1,5 @@
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
 
@@ -15,7 +13,6 @@
 
   <table class="listing" summary="event list">
     <tr class="header">
-      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">ID</th>
       <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Title</th>
       <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Place</th>
       <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Description</th>
@@ -24,7 +21,6 @@
     </tr>
     <% @events.each do |event| %>
     <tr>
-      <td><%= event.id %></td>
       <td><%= event.title %></td>
       <td><%= event.place %></td>
       <td><%= event.description %></td>
@@ -32,7 +28,7 @@
       <td><%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></td>
       <td class="actions">
         <%= link_to("Show", event_path(event), :class => 'action show') %>
-        <%= link_to("Sign in to event", :controller => "participations", :action => "new") %>
+        <%= link_to("Sign in to event", :controller => "participations", :action => "new", :event_id => event.id) %>
       </td>
     </tr>
     <% end %>
