@@ -4,24 +4,52 @@
 
 
 <body>
+<style>
+  div.big {
+    line-height: 6;
+  }
+</style>
 <div class="events index">
 
-  <image src = "https://umaine.edu/bioengineeringclub/wp-content/uploads/sites/457/2018/07/Biomedical-Engineering-Society-Logo-From-Facebook-Page-634x199.jpg" alt = "BMES Logo" width="400" height="175">
-  <h2 style = "background-color: #117099 ; color: white ; font-family: serif ; font-variant: small-caps ; font-size:300%">Events</h2>
+  <image src = "https://umaine.edu/bioengineeringclub/wp-content/uploads/sites/457/2018/07/Biomedical-Engineering-Society-Logo-From-Facebook-Page-634x199.jpg" alt = "BMES Logo" width="400" height="175"><br>
+  <br>
+  <br>
+  <br>
 
+
+  <h2 style = "background-color: #117099 ; color: white ; LINE-HEIGHT:50px; font-family: serif ; font-variant: small-caps ; font-size:300%">Events</h2>
+
+  <br>
   <%= link_to("Admin Login", new_admin_user_session_path) %>
+
+  <br>
+  <br>
+  <br>
+
+<style>
+table, th, td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+</style>
+<style>
+table, td {
+  font-size: 120%;
+}
+</style>
 
   <table class="listing" summary="event list">
     <tr class="header">
-      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Title</th>
-      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Place</th>
-      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Description</th>
-      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">Start Time</th>
-      <th style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%">End Time</th>
+      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:19%">Title</th>
+      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:15%">Place</th>
+      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:19%">Description</th>
+      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:15%">Start Time</th>
+      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:15%">End Time</th>
+      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:19%">Sign In Links</th>
     </tr>
     <% @events.each do |event| %>
     <tr>
-      <td><%= event.title %></td>
+      <td height="30"><%= event.title %></td>
       <td><%= event.place %></td>
       <td><%= event.description %></td>
       <td><%= event.starttime.strftime("%I %M %p %h-%d-%Y") %></td>

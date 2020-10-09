@@ -63,3 +63,5 @@ gem 'devise'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
+
+gem "active_material", github: "vigetlabs/active_material"
