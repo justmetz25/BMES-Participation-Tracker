@@ -9,6 +9,12 @@
 <div class="Events show">
   <h2>Show event</h2>
 
+<style>
+table, th, td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+</style>
   <table summary="Event detail view">
     <tr>
       <th>Title</th>
@@ -30,13 +36,9 @@
       <th>End Time</th>
       <td><%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %></td>
     </tr>
-    <tr>
-      <th>Event Password</th>
-      <td><%= @event.eventpass %></td>
-    </tr>
   </table>
 
-  Attendees
+  Attendees:
   <table>
   <tr>
     <th>UIN</th>
