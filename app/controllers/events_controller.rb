@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'securerandom'
 
 # All commented out methods works in Admin Console, they are not needed for a user

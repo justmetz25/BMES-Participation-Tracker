@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Event page', type: :system do
   describe 'Check Urls' do
     it 'View event with different url ids' do
-      event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved', starttime: '2015-01-02 00:00:00', endtime: '2015-01-02 00:00:00', eventpass: 'pass2')
-      event2 = Event.create!(title: 'Event Test 2', place: 'Zach 222', description: 'Not Saved', starttime: '2015-01-03 00:00:00', endtime: '2015-01-03 00:00:00', eventpass: 'pass3')
+      event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                             starttime: '2015-01-02 00:00:00', endtime: '2015-01-02 00:00:00', eventpass: 'pass2')
+      event2 = Event.create!(title: 'Event Test 2', place: 'Zach 222', description: 'Not Saved',
+                             starttime: '2015-01-03 00:00:00', endtime: '2015-01-03 00:00:00', eventpass: 'pass3')
       event1.save
       event2.save
       visit events_path
@@ -19,8 +23,10 @@ RSpec.describe 'Event page', type: :system do
       event2.destroy
     end
     it 'Visit event with different url ids' do
-      event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved', starttime: '2015-01-02 00:00:00', endtime: '2015-01-02 00:00:00', eventpass: 'pass2')
-      event2 = Event.create!(title: 'Event Test 2', place: 'Zach 222', description: 'Not Saved', starttime: '2015-01-03 00:00:00', endtime: '2015-01-03 00:00:00', eventpass: 'pass3')
+      event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                             starttime: '2015-01-02 00:00:00', endtime: '2015-01-02 00:00:00', eventpass: 'pass2')
+      event2 = Event.create!(title: 'Event Test 2', place: 'Zach 222', description: 'Not Saved',
+                             starttime: '2015-01-03 00:00:00', endtime: '2015-01-03 00:00:00', eventpass: 'pass3')
       event1.save
       event2.save
       visit events_path
@@ -72,7 +78,8 @@ RSpec.describe 'Participation Page', type: :system do
   end
   describe 'Does not log in to Url' do
     it 'With other events password' do
-      event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved', starttime: '2015-01-02 00:00:00', endtime: '2015-01-02 00:00:00', eventpass: 'pass2')
+      event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                             starttime: '2015-01-02 00:00:00', endtime: '2015-01-02 00:00:00', eventpass: 'pass2')
       event1.save
       visit events_path
       path1 = "//a[@href='/participations/new?event_id=" + event1.id.to_s + "']"
