@@ -1,0 +1,14 @@
+AllCops:
+  Include:
+    - Gemfile
+    - app/**/*.rb
+    - db/**/*.rb
+    - spec/**/*.rb
+  Exclude:
+    - bin/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods: ['define', 'describe', 'it']
