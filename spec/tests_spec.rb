@@ -54,6 +54,17 @@ RSpec.describe 'Event page', type: :system do
             expect(page).to have_content('Place')
             expect(page).to have_content('Description')
             expect(page).to have_content('Attendees')
+            sleep(2)
+        end
+        it 'Go back to home' do
+            visit events_path
+            sleep(2)
+            click_link('Show')
+            sleep(2)
+            click_link('<< Back to List')
+            sleep(2)
+        end
+    end
     describe 'View attendances' do
         it 'Submit from Participation page' do
             visit events_path
