@@ -8,33 +8,19 @@ RSpec.describe 'Login page', type: :system do
             visit new_admin_user_session_path
             fill_in('admin_user[email]', :with => 'admin@example.com')
             fill_in('admin_user[password]', :with => 'password')
-<<<<<<< HEAD
-            #sleep(2)
-            click_button('Login')
-            expect(page).to have_content('Signed in successfully.')
-            #sleep(2)
-=======
             sleep(2)
             click_button('Login')
             expect(page).to have_content('Signed in successfully.')
             sleep(2)
->>>>>>> master
         end
         it 'Fail' do
             visit new_admin_user_session_path
             fill_in('admin_user[email]', :with => 'admin@example.com')
             fill_in('admin_user[password]', :with => 'p')
-<<<<<<< HEAD
-            #sleep(2)
-            click_button('Login')
-            expect(page).to have_content('Invalid Email or password.')
-            #sleep(2)
-=======
             sleep(2)
             click_button('Login')
             expect(page).to have_content('Invalid Email or password.')
             sleep(2)
->>>>>>> master
         end
     end
 end
@@ -54,19 +40,11 @@ RSpec.describe 'Event page', type: :system do
             expect(page).to have_content('Start Time')
             expect(page).to have_content('End Time')
             
-<<<<<<< HEAD
-            #sleep(2)
-        end
-        it 'Specific event' do
-            visit events_path
-            #sleep(2)
-=======
             sleep(2)
         end
         it 'Specific event' do
             visit events_path
             sleep(2)
->>>>>>> master
             click_link('Show')
             expect(page).to have_selector(:link_or_button, '<< Back to List')
 
@@ -76,29 +54,6 @@ RSpec.describe 'Event page', type: :system do
             expect(page).to have_content('Place')
             expect(page).to have_content('Description')
             expect(page).to have_content('Attendees')
-<<<<<<< HEAD
-            #sleep(2)
-        end
-        it 'Go back to home' do
-            visit events_path
-            #sleep(2)
-            click_link('Show')
-            #sleep(2)
-            click_link('<< Back to List')
-            #sleep(2)
-=======
-            sleep(2)
-        end
-        it 'Go back to home' do
-            visit events_path
-            sleep(2)
-            click_link('Show')
-            sleep(2)
-            click_link('<< Back to List')
-            sleep(2)
->>>>>>> master
-        end
-    end
     describe 'View attendances' do
         it 'Submit from Participation page' do
             visit events_path
@@ -108,12 +63,7 @@ RSpec.describe 'Event page', type: :system do
             fill_in('participation[uin]', :with => '666666666')
             fill_in('participation[first_name]', :with => 'John')
             fill_in('participation[last_name]', :with => 'Doe')
-            fill_in('participation[email]', :with => 'jdoe@example.com')
-<<<<<<< HEAD
-            #sleep(2)
-=======
             sleep(2)
->>>>>>> master
     
             click_button('commit')
             visit events_path
@@ -122,11 +72,7 @@ RSpec.describe 'Event page', type: :system do
             expect(page).to have_content('John')
             expect(page).to have_content('Doe')
             expect(page).to have_content('jdoe@example.com')
-<<<<<<< HEAD
-            #sleep(2)
-=======
             sleep(2)
->>>>>>> master
         end
     end
 end
@@ -153,21 +99,12 @@ RSpec.describe 'Participation Page', type: :system do
             fill_in('participation[first_name]', :with => 'John')
             fill_in('participation[last_name]', :with => 'Doe')
             fill_in('participation[email]', :with => 'jdoe@example.com')
-<<<<<<< HEAD
-            #sleep(2)
-
-            click_button('commit')
-            #sleep(2)
-            expect(page).to have_content('Successfully signed in')
-            #sleep(2)
-=======
             sleep(2)
 
             click_button('commit')
             sleep(2)
             expect(page).to have_content('Successfully signed in')
             sleep(2)
->>>>>>> master
         end
         it 'Failed Submit via Password' do
             visit events_path
@@ -178,38 +115,12 @@ RSpec.describe 'Participation Page', type: :system do
             fill_in('participation[first_name]', :with => 'John')
             fill_in('participation[last_name]', :with => 'Doe')
             fill_in('participation[email]', :with => 'jdoe@example.com')
-<<<<<<< HEAD
-            #sleep(2)
-
-            click_button('commit')
-            #sleep(2)
-            expect(page).to have_content('Incorrect password')
-            #sleep(2)
-        end
-        it 'No such event error' do
-            visit new_participation_path(event_id: "300")
-            #participations/new?event_id=300
-            #click_link('Sign in to event')
-
-            fill_in('event_pass', :with => '1')
-            fill_in('participation[uin]', :with => '666666666')
-            fill_in('participation[first_name]', :with => 'John')
-            fill_in('participation[last_name]', :with => 'Doe')
-            fill_in('participation[email]', :with => 'jdoe@example.com')
-            #sleep(2)
-
-            click_button('commit')
-            #sleep(2)
-            expect(page).to have_content('No Such Event')
-            #sleep(2)
-=======
             sleep(2)
 
             click_button('commit')
             sleep(2)
             expect(page).to have_content('Incorrect password')
             sleep(2)
->>>>>>> master
         end
     end
     describe 'Input Validation Fail' do
@@ -221,11 +132,7 @@ RSpec.describe 'Participation Page', type: :system do
             
             message = page.find('#event_pass').native.attribute('validationMessage')
             expect(message).to eq 'Please fill out this field.'
-<<<<<<< HEAD
-            #sleep(2)
-=======
             sleep(2)
->>>>>>> master
         end
         it 'UIN' do
             visit events_path
@@ -236,11 +143,7 @@ RSpec.describe 'Participation Page', type: :system do
 
             message = page.find('#participation_uin').native.attribute('validationMessage')
             expect(message).to eq 'Please fill out this field.'
-<<<<<<< HEAD
-            #sleep(2)
-=======
             sleep(2)
->>>>>>> master
         end
         it 'First Name' do
             visit events_path
@@ -252,11 +155,7 @@ RSpec.describe 'Participation Page', type: :system do
 
             message = page.find('#participation_first_name').native.attribute('validationMessage')
             expect(message).to eq 'Please fill out this field.'
-<<<<<<< HEAD
-            #sleep(2)
-=======
             sleep(2)
->>>>>>> master
         end
         it 'Last Name' do
             visit events_path
@@ -269,11 +168,7 @@ RSpec.describe 'Participation Page', type: :system do
 
             message = page.find('#participation_last_name').native.attribute('validationMessage')
             expect(message).to eq 'Please fill out this field.'
-<<<<<<< HEAD
-            #sleep(2)
-=======
             sleep(2)
->>>>>>> master
         end
         it 'Email' do
             visit events_path
@@ -287,7 +182,6 @@ RSpec.describe 'Participation Page', type: :system do
 
             message = page.find('#participation_email').native.attribute('validationMessage')
             expect(message).to eq 'Please fill out this field.'
-<<<<<<< HEAD
             #sleep(2)
         end
     end
@@ -485,9 +379,7 @@ RSpec.describe 'Admin Create Event', type: :system do
             expect(page).to have_content('Admin Users')
             
             #sleep(2)
-=======
             sleep(2)
->>>>>>> master
         end
     end
 end
