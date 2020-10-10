@@ -52,8 +52,8 @@ table, td {
       <td height="30"><%= event.title %></td>
       <td><%= event.place %></td>
       <td><%= event.description %></td>
-      <td><%= event.starttime.strftime("%I %M %p %h-%d-%Y") %></td>
-      <td><%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></td>
+      <td><%= @event&.starttime&.strftime("%I %M %p %h-%d-%Y") %></td>
+      <td><%= @event&.endtime&.strftime("%I %M %p %h-%d-%Y") %></td>
       <td class="actions">
         <%= link_to("Show", event_path(event), :class => 'action show') %>
         <%= link_to("Sign in to event", :controller => "participations", :action => "new", :event_id => event.id) %>
