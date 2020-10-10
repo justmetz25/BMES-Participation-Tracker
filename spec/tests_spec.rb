@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Login page', type: :system do
     describe 'Login' do
         it 'Success' do
-            @admin = AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-            @admin.save
             visit new_admin_user_session_path
             fill_in('admin_user[email]', :with => 'admin@example.com')
             fill_in('admin_user[password]', :with => 'password')
@@ -215,7 +213,7 @@ RSpec.describe 'Participation Page', type: :system do
         end
     end
 end
-#above is alex blow is wang
+#above is alex below is wang
 RSpec.describe 'Admin Create Event', type: :system do
     describe 'Create Event' do
         before do
@@ -226,7 +224,7 @@ RSpec.describe 'Admin Create Event', type: :system do
             click_button('Login')
             click_on 'Events'
             click_on 'New Event'
-            end
+        end
 
         it 'Success Create Event' do
             fill_in 'Title', with: "title1"
