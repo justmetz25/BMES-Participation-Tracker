@@ -1,3 +1,3 @@
 class Event < ApplicationRecord
-    scope :sorted, lambda { order("title ASC")}
+  scope :sorted, -> { order('title ASC') }
 end
