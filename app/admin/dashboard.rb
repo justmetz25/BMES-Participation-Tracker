@@ -27,9 +27,11 @@ ActiveAdmin.register_page 'Dashboard' do
       column do
         panel 'Welcome to the BMES Officer Area!' do
           para 'Our organization is committed to Advancing Human Health and Well Being'
-          para "To get started, select the 'Events' tab from the Navigation Bar to create a new event, or select 'Participations' to view member sign ins!"
+          para "To get started, select the 'Events' tab from the Navigation Bar to create a new event, or select " \
+            "'Participations' to view member sign ins!"
         end
       end
     end
-  end # content
+  end
+  # content
 end
