@@ -12,3 +12,9 @@ Style/Documentation:
 
 Metrics/BlockLength:
   ExcludedMethods: ['define', 'describe', 'it']
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
