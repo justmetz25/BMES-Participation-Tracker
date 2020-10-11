@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -10,6 +12,8 @@
 # Participation.create!(uin: 123, first_name: 'Joe', event_id: 1) if Rails.env.development?
 Participation.create!(uin: 456, first_name: 'Joanna', event_id: 1) if Rails.env.development?
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.test?
-Event.create!(title: 'Event Title', place: 'Event Place', description: 'Event Description', 
-    starttime: '2015-01-01 00:00:00' , endtime: '2015-01-01 01:00:00', eventpass: '1') if Rails.env.test?
+if Rails.env.test?
+  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+  Event.create!(title: 'Event Title', place: 'Event Place', description: 'Event Description',
+                starttime: '2015-01-01 00:00:00', endtime: '2015-01-01 01:00:00', eventpass: '1')
+end

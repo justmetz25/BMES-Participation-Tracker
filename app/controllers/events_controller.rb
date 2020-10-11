@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'securerandom'
 
-#All commented out methods works in Admin Console, they are not needed for a user
+# All commented out methods works in Admin Console, they are not needed for a user
 
 class EventsController < ApplicationController
-
-  # has_many: ParticipationsController 
+  # has_many: ParticipationsController
 
   # def delete
   #   @event = Event.find(params[:id])
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @count = Participation.where(:event_id => params[:id])
+    @count = Participation.where(event_id: params[:id])
   end
 
   # def destroy
