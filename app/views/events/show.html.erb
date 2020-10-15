@@ -4,56 +4,20 @@
   </div>
 <% end %>
 
-<%= link_to("<< Back to List", events_path, :class => 'back-link') %>
+<div class="container-fluid">
 
-<div class="Events show">
-  <h2>Show event</h2>
+<h1 class="event-title"><%= @event.title %></h1>
+<h3><%= @event.place %></h3>
+<p><%= @event.description %></p>
+<p>Start: <%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %></p>
+<p>End: <%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %></p>
 
-<style>
-table, th, td {
-  border: 2px solid black;
-  border-collapse: collapse;
-}
-</style>
-  <table summary="Event detail view">
-    <tr>
-      <th>Title</th>
-      <td><%= @event.title %></td>
-    </tr>
-    <tr>
-      <th>Place</th>
-      <td><%= @event.place %></td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td><%= @event.description %></td>
-    </tr>
-    <tr>
-      <th>Start Time</th>
-      <td><%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %></td>
-    </tr>
-    <tr>
-      <th>End Time</th>
-      <td><%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %></td>
-    </tr>
-  </table>
-
-  Attendees:
-  <table>
-  <tr>
-    <th>UIN</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-  </tr>
-  <% @count.each do |c| %>
-    <tr>
-      <td><%= c.uin %></td>
-      <td><%= c.first_name %></td>
-      <td><%= c.last_name %></td>
-      <td><%= c.email %></td>
-    </tr>
+<ul class="list-group list-group-flush">
+<h3>Attendees: </h3>
+<% @count.each do |c| %>
+  <li class="list-group-item"><%= c.first_name %> <%= c.last_name %> <%= c.uin %> <%= c.email %></li>
   <% end %>
-  </td>
-  </table>
+</ul>
+<br>
+<%= link_to("Back to List", events_path, :class => 'back-link', class: "btn btn-primary") %>
 </div>
