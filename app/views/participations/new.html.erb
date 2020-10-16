@@ -16,7 +16,7 @@
               <%= f.hidden_field(:event_id, value: @id,:readonly => true) %>
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Email</label>
-                <%= f.text_field(:email, required: true, class: "form-control") %>
+                <%= f.email_field(:email, required: true, class: "form-control") %>
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Event Password</label>
