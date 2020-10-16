@@ -41,7 +41,8 @@ body{
     color: #ffffff;
     text-align: center;
     font-size: 45px;
-    padding: 2rem;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 .participation-title{
@@ -71,4 +72,9 @@ html, body {
 .btn-inverted{
     border-color: #117099;
     color:  #117099;;
+}
+
+.show{
+    color: #ffffff;
+    text-align: center;
 }

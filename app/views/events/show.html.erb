@@ -3,26 +3,26 @@
     <%= flash[:notice] %>
   </div>
 <% end %>
-<div style="background:#117099 !important" class="jumbotron">
+<div style="background:#117099 !important" class="jumbotron show">
+  <div class="container">
     <h1 class="event-title"><%= @event.title %></h1>
-    
-    
+    <h3><%= @event.place %></h3>
+    <p><%= @event.description %></p>
+    <p><%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %> - <%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %></p>
+  </div>
 </div>
 
 <div class="container">
 
 
-<h3>Location: <%= @event.place %></h3>
-<p><%= @event.description %></p>
-<p>Start: <%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %></p>
-<p>End: <%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %></p>
 
-<ul class="list-group list-group-flush">
-<h3>Attendees: </h3>
-<% @count.each do |c| %>
-  <li class="list-group-item"><%= c.first_name %> <%= c.last_name %> <%= c.uin %> <%= c.email %></li>
-  <% end %>
-</ul>
-<br>
-<%= link_to("Back to List", events_path, :class => 'back-link', class: "btn btn-primary") %>
+
+  <ul class="list-group list-group-flush">
+  <h3>Attendees: </h3>
+  <% @count.each do |c| %>
+    <li class="list-group-item"><%= c.first_name %> <%= c.last_name %> <%= c.uin %> <%= c.email %></li>
+    <% end %>
+  </ul>
+  <br>
+  <%= link_to("Back to List", events_path, :class => 'back-link', class: "btn btn-primary") %>
 </div>
