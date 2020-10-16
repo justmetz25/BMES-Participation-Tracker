@@ -26,7 +26,7 @@ table, td {
   }
 
 body{
-    background-color: white !important;
+    background-color: #ffffff !important;
 }
 
 .mainpicture{
@@ -38,5 +38,37 @@ body{
 }
 
 .event-title{
-    color: red;
+    color: #ffffff;
+    text-align: center;
+    font-size: 45px;
+    padding: 2rem;
+}
+
+.participation-title{
+    color: #ffffff;
+    text-align: center;
+    font-size: 45px;
+    padding-top: 8rem;
+    padding-bottom: 1rem;
+}
+
+.btn-primary {
+    background-color: #117099;
+    border-color: #117099;
+}
+
+.bmes-background{
+    background-color: #117099;
+}
+
+html, body {
+    height: 100%;
+}
+.container-fluid {
+    height: 100vh;
+  }
+
+.btn-inverted{
+    border-color: #117099;
+    color:  #117099;;
 }

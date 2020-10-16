@@ -4,14 +4,15 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<div class="container-fluid">
+<div class="container">
 
 <div class="mainpicture">
 
-  <img class="rounded mx-auto d-block" src = "https://umaine.edu/bioengineeringclub/wp-content/uploads/sites/457/2018/07/Biomedical-Engineering-Society-Logo-From-Facebook-Page-634x199.jpg" alt = "BMES Logo">
+  <img class="rounded mx-auto d-block" src = "/assets/Biomedical-Engineering-Society-Logo.jpg" alt = "BMES Logo">
 
   
 </div>
+<br>
 
 <% @events.in_groups_of(3,false) do |group| %>
 <div class="row">
@@ -24,8 +25,8 @@
         <p class="card-text"><%= event.description %></p>
         <p class="card-text">Start Time: <%= event.starttime.strftime("%I %M %p %h-%d-%Y") %></p>
         <p class="card-text">End Time: <%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></p>
-        <%= link_to("Details", event_path(event), :class => 'action show', class: "btn btn-primary")%>
-        <%= link_to("Event Check-in", :controller => "participations", :action => "new", :event_id => event.id) %>
+        <%= link_to("Details", event_path(event), :class => 'action show', class: "btn btn-primary float-left")%>
+        <%= link_to("Event Check-in", {:controller => "participations", :action => "new", :event_id => event.id}, class: "btn btn-inverted float-right") %>
       </div>
     </div>
   </div>
