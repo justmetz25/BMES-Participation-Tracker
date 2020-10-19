@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   get 'events/new'
   get 'events/show'
   get 'events/homepage'
+
+  namespace :api, path: '/api' do
+    get 'v1/events'
+    get 'v1/event'
+  end
+
   # method 'participations/new/:id', to: 'participations#action'
   # get 'participations/new/:id'
   # get 'events/:id/submit', action: :submit, controller: 'participation'
