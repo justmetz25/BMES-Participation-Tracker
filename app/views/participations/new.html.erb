@@ -1,44 +1,48 @@
-<%= link_to("<< Back to List", events_path, :class => 'back-link') %>
-
-<h1>Sign In To Event:</h1>
-<!-- Find me in app/views/participation/index.html.erb -->
-
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
 <% @id = params[:event_id] %>
 
-<%= form_for(@participation) do |f| %>
+<div class="container-fluid d-flex flex-column bmes-background">
 
-    <table summary="Participation form fields">
-      <tr>
-        <td><%= f.hidden_field(:event_id, value: @id,:readonly => true) %></td>
-      </tr>
-      <tr>
-        <th>Password</td>
-        <td><%= text_field_tag(:event_pass, nil, required: true) %></td>
-      </tr>
-      <tr>
-        <th>UIN</th>
-        <td><%= f.number_field(:uin, required: true) %></td>
-      </tr>
-      <tr>
-        <th>First Name</th>
-        <td><%= f.text_field(:first_name, required: true) %></td>
-      </tr>
-      <tr>
-        <th>Last Name</th>
-        <td><%= f.text_field(:last_name, required: true) %></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td><%= f.text_field(:email, required: true) %></td>
-      </tr>
-    </table>
-
-    <div class="form-buttons">
-      <%= f.submit("Sign In") %>
-    </div>
-
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
+  
+
+  <h1 class="participation-title">Sign In To Event:</h1>
+  <div class="container  h-100">
+    <div class="col my-auto ">
+        <div class="card card-body mx-auto">
+          <%= form_for(@participation) do |f| %>
+            <div class="form-row">
+              <%= f.hidden_field(:event_id, value: @id,:readonly => true) %>
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <%= f.email_field(:email, required: true, class: "form-control") %>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Event Password</label>
+                <%= text_field_tag(:event_pass, nil, required: true, class: "form-control") %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="inputCity">First Name</label>
+                <%= f.text_field(:first_name, required: true, class: "form-control") %>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">Last Name</label>
+                <%= f.text_field(:last_name, required: true, class: "form-control") %>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputZip">UIN</label>
+                <%= f.number_field(:uin, required: true, class: "form-control") %>
+              </div>
+            </div>
+            <%= link_to("Back to List", events_path, :class => 'back-link', class: "btn btn-primary float-right") %>
+            <%= f.submit("Sign In", class: "btn btn-inverted float-left") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
