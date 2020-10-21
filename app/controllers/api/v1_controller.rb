@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Api
   class V1Controller < ActionController::API
-
     def events
       @events = Event.all
       render json: {
@@ -9,11 +10,12 @@ module Api
     end
 
     def event
-      @event = begin
-                Event.find(params[:id])
-              rescue StandardError
-                nil
-              end
+      @event =
+        begin
+          Event.find(params[:id])
+        rescue StandardError
+          nil
+        end
       if @event.nil?
         render json: {}, status: :bad_request
       else
@@ -25,6 +27,5 @@ module Api
         }, status: :ok
       end
     end
-      
   end
 end
