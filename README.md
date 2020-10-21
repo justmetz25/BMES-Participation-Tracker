@@ -1,4 +1,6 @@
-# README
+# Repository Used for Sprint 1 and 2
+
+https://github.com/justmetz25/BMES-Participation-Tracker
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
