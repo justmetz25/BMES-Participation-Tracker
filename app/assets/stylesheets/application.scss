@@ -84,9 +84,11 @@ html, body {
 }
 
 @media (max-width: 767px) { 
-    .navbar{
-        display:none;
+    .navbar-brand{
+        font-size: 0px;
     }
+
+
 
     .mainpicture{
         width: -webkit-fill-available;
