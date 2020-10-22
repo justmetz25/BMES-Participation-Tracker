@@ -30,45 +30,44 @@ RSpec.describe 'Event page', type: :system do
     it 'Homepage' do
       visit events_path
 
-      expect(page).to have_selector(:link_or_button, 'Show')
-      expect(page).to have_selector(:link_or_button, 'Sign in to event')
+      expect(page).to have_selector(:link_or_button, 'Details')
+      expect(page).to have_selector(:link_or_button, 'Event Check-in')
 
-      expect(page).to have_content('Events')
-      expect(page).to have_content('Title')
-      expect(page).to have_content('Place')
-      expect(page).to have_content('Description')
-      expect(page).to have_content('Start Time')
-      expect(page).to have_content('End Time')
+      expect(page).to have_content('Event Title')
+      expect(page).to have_content('Event Place')
+      expect(page).to have_content('Event Description')
+      expect(page).to have_content('Start Time:')
+      expect(page).to have_content('End Time:')
 
       # sleep(2)
     end
     it 'Specific event' do
       visit events_path
       # sleep(2)
-      click_link('Show')
-      expect(page).to have_selector(:link_or_button, '<< Back to List')
+      click_link('Details')
+      expect(page).to have_selector(:link_or_button, 'Back to List')
 
-      expect(page).to have_content('Show event')
+      # expect(page).to have_content('Show event')
 
-      expect(page).to have_content('Title')
-      expect(page).to have_content('Place')
-      expect(page).to have_content('Description')
-      expect(page).to have_content('Attendees')
+      expect(page).to have_content('Event Title')
+      expect(page).to have_content('Event Place')
+      expect(page).to have_content('Event Description')
+      expect(page).to have_content('Attendees:')
       # sleep(2)
     end
     it 'Go back to home' do
       visit events_path
       # sleep(2)
-      click_link('Show')
+      click_link('Details')
       # sleep(2)
-      click_link('<< Back to List')
+      click_link('Back to List')
       # sleep(2)
     end
   end
   describe 'View attendances' do
     it 'Submit from Participation page' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('participation[uin]', with: '666666666')
@@ -79,7 +78,7 @@ RSpec.describe 'Event page', type: :system do
 
       click_button('commit')
       visit events_path
-      click_link('Show')
+      click_link('Details')
       expect(page).to have_content('666666666')
       expect(page).to have_content('John')
       expect(page).to have_content('Doe')
@@ -93,7 +92,7 @@ RSpec.describe 'Participation Page', type: :system do
   describe 'Submit attendance' do
     it 'Visit page' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       expect(page).to have_content('Password')
       expect(page).to have_content('UIN')
@@ -104,7 +103,7 @@ RSpec.describe 'Participation Page', type: :system do
     end
     it 'Successful Submit' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('participation[uin]', with: '666666666')
@@ -115,12 +114,12 @@ RSpec.describe 'Participation Page', type: :system do
 
       click_button('commit')
       # sleep(2)
-      expect(page).to have_content('Successfully signed in')
+      expect(page).to have_content('You have successfully signed into the event.')
       # sleep(2)
     end
     it 'Failed Submit via Password' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       fill_in('event_pass', with: '2')
       fill_in('participation[uin]', with: '666666666')
@@ -131,7 +130,7 @@ RSpec.describe 'Participation Page', type: :system do
 
       click_button('commit')
       # sleep(2)
-      expect(page).to have_content('Incorrect password')
+      expect(page).to have_content('Incorrect password, please try again.')
       # sleep(2)
     end
     it 'No such event error' do
@@ -148,14 +147,14 @@ RSpec.describe 'Participation Page', type: :system do
 
       click_button('commit')
       # sleep(2)
-      expect(page).to have_content('No Such Event')
+      expect(page).to have_content('No matching event found, please try again.')
       # sleep(2)
     end
   end
   describe 'Input Validation Fail' do
     it 'Password' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       click_button('commit')
 
@@ -165,7 +164,7 @@ RSpec.describe 'Participation Page', type: :system do
     end
     it 'UIN' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       fill_in('event_pass', with: '1')
       click_button('commit')
@@ -176,7 +175,7 @@ RSpec.describe 'Participation Page', type: :system do
     end
     it 'First Name' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('participation[uin]', with: '999999999')
@@ -188,7 +187,7 @@ RSpec.describe 'Participation Page', type: :system do
     end
     it 'Last Name' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('participation[uin]', with: '999999999')
@@ -201,7 +200,7 @@ RSpec.describe 'Participation Page', type: :system do
     end
     it 'Email' do
       visit events_path
-      click_link('Sign in to event')
+      click_link('Event Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('participation[uin]', with: '999999999')
@@ -400,12 +399,87 @@ RSpec.describe 'Admin Create Event', type: :system do
 
       # sleep(2)
     end
-    it 'Success Create Admin User' do
+    it 'Create Admin User Blank fileds' do
+      click_on 'Admin Users'
+      #sleep(2)
+      click_on 'New Admin User'
+      click_on 'Create Admin user'
+      expect(page).to have_content("can't be blank")
+      sleep(1)
+      fill_in 'Email', with: "admin2@example.com"
+      click_on 'Create Admin user'
+      expect(page).to have_content("can't be blank")
+      sleep(1)
+      fill_in 'admin_user[password]', with: 'password2'
+      fill_in 'admin_user[password_confirmation]', with: 'password2'
+      click_on 'Create Admin user'
+      # message = page.find('#participation_email').native.attribute('validationMessage')
+      # expect(message).to eq 'Admin user was successfully created.'
+      expect(page).to have_content('admin2@example.com')
+      
+      #sleep(2)
+  end
+
+  it 'Create Admin User invalid email' do
+      click_on 'Admin Users'
+      #sleep(2)
+      click_on 'New Admin User'
+      fill_in 'Email', with: "admin2"
+      fill_in 'admin_user[password]', with: 'password2'
+      fill_in 'admin_user[password_confirmation]', with: 'password2'
+      click_on 'Create Admin user'
+      expect(page).to have_content('is invalid')
+      
+      #sleep(2)
+  end
+
+  it 'Create Admin User invalid password length' do
+      click_on 'Admin Users'
+      #sleep(2)
+      click_on 'New Admin User'
+      fill_in 'Email', with: "admin2@example.com"
+      fill_in 'admin_user[password]', with: 'p'
+      fill_in 'admin_user[password_confirmation]', with: 'p'
+      click_on 'Create Admin user'
+      expect(page).to have_content('is too short (minimum is 6 characters)')
+      
+      #sleep(2)
+  end
+
+  it 'Create Admin User invalid password confirmation' do
+      click_on 'Admin Users'
+      #sleep(2)
+      click_on 'New Admin User'
+      fill_in 'Email', with: "admin2@example.com"
+      fill_in 'admin_user[password]', with: 'password2'
+      fill_in 'admin_user[password_confirmation]', with: 'password22'
+      click_on 'Create Admin user'
+      expect(page).to have_content("doesn't match Password")
+      
+      #sleep(2)
+  end
+
+  # it 'Success Delete Admin User' do
+  #     click_on 'Admin Users'
+  #     #sleep(2)
+  #     click_on 'New Admin User'
+  #     fill_in 'Email', with: "admin2@example.com"
+  #     fill_in 'admin_user[password]', with: 'password2'
+  #     fill_in 'admin_user[password_confirmation]', with: 'password2'
+  #     click_on 'Create Admin user'
+  #     click_on 'Admin Users'
+  #     click_on 
+  #     expect(page).to have_content('Admin user was successfully destroyed.')
+      
+  #     #sleep(2)
+  # end
+
+  it 'Admin User Page "Created At" Column ' do
       click_on 'Admin Users'
       click_on 'Created At'
       expect(page).to have_content('Admin Users')
-
-      # sleep(2)
-    end
+      
+      #sleep(2)
   end
+end
 end

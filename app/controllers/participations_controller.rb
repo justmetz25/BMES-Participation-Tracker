@@ -16,13 +16,13 @@ class ParticipationsController < ApplicationController
              end
 
     if @event.nil?
-      redirect_to new_participation_path(event_id: @event_id), flash: { message: 'No Such Event' }
+      redirect_to new_participation_path(event_id: @event_id), flash: { danger: 'No matching event found, please try again.' }
     elsif @event.eventpass == params[:event_pass]
       @participation = Participation.new(participation_params)
       @participation.save
-      redirect_to events_path, flash: { message: 'Successfully signed in' }
+      redirect_to events_path, flash: { success: 'You have successfully signed into the event.' }
     else
-      redirect_to new_participation_path(event_id: @event_id), flash: { message: 'Incorrect password' }
+      redirect_to new_participation_path(event_id: @event_id), flash: { danger: 'Incorrect password, please try again.' }
     end
   end
 

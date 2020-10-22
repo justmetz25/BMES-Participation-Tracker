@@ -1,65 +1,40 @@
+<body>
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
+<div class="container">
 
-<body>
-<style>
-  div.big {
-    line-height: 6;
-  }
-</style>
-<div class="events index">
+<div class="mainpicture">
 
-  <image src = "https://umaine.edu/bioengineeringclub/wp-content/uploads/sites/457/2018/07/Biomedical-Engineering-Society-Logo-From-Facebook-Page-634x199.jpg" alt = "BMES Logo" width="400" height="175"><br>
-  <br>
-  <br>
-  <br>
+  <img class="rounded mx-auto d-block" src = "/assets/Biomedical-Engineering-Society-Logo.jpg" alt = "BMES Logo">
 
-
-  <h2 style = "background-color: #117099 ; color: white ; LINE-HEIGHT:50px; font-family: serif ; font-variant: small-caps ; font-size:300%">Events</h2>
-
-  <br>
-  <%= link_to("Admin Login", new_admin_user_session_path) %>
-
-  <br>
-  <br>
-  <br>
-
-<style>
-table, th, td {
-  border: 2px solid black;
-  border-collapse: collapse;
-}
-</style>
-<style>
-table, td {
-  font-size: 120%;
-}
-</style>
-
-  <table class="listing" summary="event list">
-    <tr class="header">
-      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:19%">Title</th>
-      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:15%">Place</th>
-      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:19%">Description</th>
-      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:15%">Start Time</th>
-      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:15%">End Time</th>
-      <th height="50" style = "color: #117099 ; font-family: serif ; font-variant: small-caps ; font-size:200%; width:19%">Sign In Links</th>
-    </tr>
-    <% @events.each do |event| %>
-    <tr>
-      <td height="30"><%= event.title %></td>
-      <td><%= event.place %></td>
-      <td><%= event.description %></td>
-      <td><%= @event&.starttime&.strftime("%I %M %p %h-%d-%Y") %></td>
-      <td><%= @event&.endtime&.strftime("%I %M %p %h-%d-%Y") %></td>
-      <td class="actions">
-        <%= link_to("Show", event_path(event), :class => 'action show') %>
-        <%= link_to("Sign in to event", :controller => "participations", :action => "new", :event_id => event.id) %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+  
 </div>
+<br>
+
+<% @events.in_groups_of(3,false) do |group| %>
+<div class="row">
+  <% group.each do |event| %>
+  <div class="col-sm-4">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h5 class="card-title crd-title"><%= event.title %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= event.place %></h6>
+        <p class="card-text"><%= event.description %></p>
+        <p class="card-text">Start Time: <%= event.starttime.strftime("%I %M %p %h-%d-%Y") %></p>
+        <p class="card-text">End Time: <%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></p>
+        <%= link_to("Details", event_path(event), :class => 'action show', class: "btn btn-primary float-left")%>
+        <%= link_to("Event Check-in", {:controller => "participations", :action => "new", :event_id => event.id}, class: "btn btn-inverted float-right") %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br>
+<% end %>
+
+</div>
+
 </body>
