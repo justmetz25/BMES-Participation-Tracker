@@ -2,7 +2,7 @@ AllCops:
   Include:
     - Gemfile
     - app/**/*.rb
-    - db/**/*.rb
+    - db/seeds.rb
     - spec/**/*.rb
   Exclude:
     - bin/**/*

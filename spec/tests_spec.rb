@@ -401,12 +401,12 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
     it 'Create Admin User Blank fileds' do
       click_on 'Admin Users'
-      #sleep(2)
+      # sleep(2)
       click_on 'New Admin User'
       click_on 'Create Admin user'
       expect(page).to have_content("can't be blank")
       sleep(1)
-      fill_in 'Email', with: "admin2@example.com"
+      fill_in 'Email', with: 'admin2@example.com'
       click_on 'Create Admin user'
       expect(page).to have_content("can't be blank")
       sleep(1)
@@ -416,70 +416,70 @@ RSpec.describe 'Admin Create Event', type: :system do
       # message = page.find('#participation_email').native.attribute('validationMessage')
       # expect(message).to eq 'Admin user was successfully created.'
       expect(page).to have_content('admin2@example.com')
-      
-      #sleep(2)
-  end
 
-  it 'Create Admin User invalid email' do
+      # sleep(2)
+    end
+
+    it 'Create Admin User invalid email' do
       click_on 'Admin Users'
-      #sleep(2)
+      # sleep(2)
       click_on 'New Admin User'
-      fill_in 'Email', with: "admin2"
+      fill_in 'Email', with: 'admin2'
       fill_in 'admin_user[password]', with: 'password2'
       fill_in 'admin_user[password_confirmation]', with: 'password2'
       click_on 'Create Admin user'
       expect(page).to have_content('is invalid')
-      
-      #sleep(2)
-  end
 
-  it 'Create Admin User invalid password length' do
+      # sleep(2)
+    end
+
+    it 'Create Admin User invalid password length' do
       click_on 'Admin Users'
-      #sleep(2)
+      # sleep(2)
       click_on 'New Admin User'
-      fill_in 'Email', with: "admin2@example.com"
+      fill_in 'Email', with: 'admin2@example.com'
       fill_in 'admin_user[password]', with: 'p'
       fill_in 'admin_user[password_confirmation]', with: 'p'
       click_on 'Create Admin user'
       expect(page).to have_content('is too short (minimum is 6 characters)')
-      
-      #sleep(2)
-  end
 
-  it 'Create Admin User invalid password confirmation' do
+      # sleep(2)
+    end
+
+    it 'Create Admin User invalid password confirmation' do
       click_on 'Admin Users'
-      #sleep(2)
+      # sleep(2)
       click_on 'New Admin User'
-      fill_in 'Email', with: "admin2@example.com"
+      fill_in 'Email', with: 'admin2@example.com'
       fill_in 'admin_user[password]', with: 'password2'
       fill_in 'admin_user[password_confirmation]', with: 'password22'
       click_on 'Create Admin user'
       expect(page).to have_content("doesn't match Password")
-      
-      #sleep(2)
-  end
 
-  # it 'Success Delete Admin User' do
-  #     click_on 'Admin Users'
-  #     #sleep(2)
-  #     click_on 'New Admin User'
-  #     fill_in 'Email', with: "admin2@example.com"
-  #     fill_in 'admin_user[password]', with: 'password2'
-  #     fill_in 'admin_user[password_confirmation]', with: 'password2'
-  #     click_on 'Create Admin user'
-  #     click_on 'Admin Users'
-  #     click_on 
-  #     expect(page).to have_content('Admin user was successfully destroyed.')
-      
-  #     #sleep(2)
-  # end
+      # sleep(2)
+    end
 
-  it 'Admin User Page "Created At" Column ' do
+    # it 'Success Delete Admin User' do
+    #     click_on 'Admin Users'
+    #     #sleep(2)
+    #     click_on 'New Admin User'
+    #     fill_in 'Email', with: "admin2@example.com"
+    #     fill_in 'admin_user[password]', with: 'password2'
+    #     fill_in 'admin_user[password_confirmation]', with: 'password2'
+    #     click_on 'Create Admin user'
+    #     click_on 'Admin Users'
+    #     click_on
+    #     expect(page).to have_content('Admin user was successfully destroyed.')
+
+    #     #sleep(2)
+    # end
+
+    it 'Admin User Page "Created At" Column ' do
       click_on 'Admin Users'
       click_on 'Created At'
       expect(page).to have_content('Admin Users')
-      
-      #sleep(2)
+
+      # sleep(2)
+    end
   end
-end
 end
