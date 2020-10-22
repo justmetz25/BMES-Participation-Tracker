@@ -7,4 +7,3 @@ class Event < ApplicationRecord
     { id: id, name: title, start_time: starttime }
   end
 end
-
