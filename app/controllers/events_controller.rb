@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   # end
 
   def index
-    @events = Event.sorted
+    @events = Event.where('starttime > ?', Date.today - 2.day).all.sorted
   end
 
   # def new
