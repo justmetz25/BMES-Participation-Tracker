@@ -6,7 +6,7 @@
 <div style="background:#117099 !important" class="jumbotron show">
   <div class="container">
     <h1 class="event-title"><%= @event.title %></h1>
-    <h3><%= @event.place %></h3>
+    <h3 class="event-place"><%= @event.place %></h3>
     <p><%= @event.description %></p>
     <p><%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %> - <%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %></p>
   </div>
