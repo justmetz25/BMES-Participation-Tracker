@@ -15,5 +15,8 @@ Participation.create!(uin: 456, first_name: 'Joanna', event_id: 1) if Rails.env.
 if Rails.env.test?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
   Event.create!(title: 'Event Title', place: 'Event Place', description: 'Event Description',
+
                 starttime: '2025-01-01 00:00:00', endtime: '2025-01-01 01:00:00', eventpass: '1')
+  Participation.create!(uin: 123_456_789, first_name: 'Bob', last_name: 'Ross',
+                        email: 'happylittletrees@example.com', event_id: 1)
 end
