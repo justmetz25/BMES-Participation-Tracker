@@ -233,13 +233,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -259,13 +259,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -280,13 +280,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2016', from: 'event[starttime(1i)]'
+      select '2020', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2016', from: 'event[endtime(1i)]'
+      select '2020', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -307,13 +307,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -335,13 +335,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -363,13 +363,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -405,6 +405,27 @@ RSpec.describe 'Admin Create Event', type: :system do
       expect(page).to have_content('Admin Users')
 
       # sleep(2)
+    end
+  end
+end
+
+RSpec.describe 'Home Page Date', type: :system do
+  describe 'Input Date' do
+    it 'Is older than 2 days' do
+      event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved', starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
+      event.save
+      visit events_path
+      expect(page).not_to have_content('Event in the Past')
+      sleep(2)
+      event.destroy
+    end
+    it 'Is in future more than 2 days' do
+      event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved', starttime: '2021-01-03 00:00:00', endtime: '2021-01-03 00:00:00', eventpass: 'pass3')
+      event.save
+      visit events_path
+      expect(page).to have_content('Event in the Future')
+      sleep(2)
+      event.destroy
     end
   end
 end
