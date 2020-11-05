@@ -233,13 +233,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -259,13 +259,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -280,13 +280,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2016', from: 'event[starttime(1i)]'
+      select '2020', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2016', from: 'event[endtime(1i)]'
+      select '2020', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -307,13 +307,13 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Description', with: 'des1'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -329,19 +329,19 @@ RSpec.describe 'Admin Create Event', type: :system do
       # #sleep(2)
     end
 
-    it 'Success Add Comments' do
-      fill_in 'Title', with: 'title1'
-      fill_in 'Place', with: 'place1'
-      fill_in 'Description', with: 'des1'
+    it 'Success Delete Event with participants' do
+      fill_in 'Title', with: 'title2'
+      fill_in 'Place', with: 'place2'
+      fill_in 'Description', with: 'des2'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
@@ -350,42 +350,98 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Eventpass', with: '1128'
 
       click_on 'Create Event'
-      fill_in 'active_admin_comment[body]', with: 'comment1'
-      click_on 'Add Comment'
-      # sleep(2)
-      expect(page).to have_content('Comment was successfully created.')
-      # #sleep(2)
-    end
+      sleep(5)
+      eid = Event.all.size + 3
+      visit new_participation_path(event_id: eid)
+      sleep(5)
 
-    it 'Success Delete Comments' do
-      fill_in 'Title', with: 'title1'
-      fill_in 'Place', with: 'place1'
-      fill_in 'Description', with: 'des1'
+      fill_in 'participation[email]', with: 'test@gmail.com'
+      fill_in 'event_pass', with: '1128'
+      fill_in 'participation[first_name]', with: 'test'
+      fill_in 'participation[last_name]', with: 'guy'
+      fill_in 'participation[uin]', with: '111111111'
+      click_on 'commit'
 
       # sleep(4)
-      select '2015', from: 'event[starttime(1i)]'
+      select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2015', from: 'event[endtime(1i)]'
+      select '2025', from: 'event[endtime(1i)]'
       select 'November', from: 'event[endtime(2i)]'
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
+      
+      visit admin_event_path(id: eid)
+      #click_on 'Admin Login'
 
-      fill_in 'Eventpass', with: '1128'
 
-      click_on 'Create Event'
-      fill_in 'active_admin_comment[body]', with: 'comment1'
-      click_on 'Add Comment'
-      click_on 'Delete Comment'
+      click_on 'Delete Event'
       page.driver.browser.switch_to.alert.accept
       # sleep(2)
-      expect(page).to have_content('Comment was successfully destroyed.')
+      expect(page).to have_content('Event was successfully destroyed.')
       # #sleep(2)
     end
+    # it 'Success Add Comments' do
+    #   fill_in 'Title', with: 'title1'
+    #   fill_in 'Place', with: 'place1'
+    #   fill_in 'Description', with: 'des1'
+
+    #   # sleep(4)
+    #   select '2015', from: 'event[starttime(1i)]'
+    #   select 'November', from: 'event[starttime(2i)]'
+    #   select '2', from: 'event[starttime(3i)]'
+    #   select '10', from: 'event[starttime(4i)]'
+    #   select '00', from: 'event[starttime(5i)]'
+
+    #   select '2015', from: 'event[endtime(1i)]'
+    #   select 'November', from: 'event[endtime(2i)]'
+    #   select '2', from: 'event[endtime(3i)]'
+    #   select '12', from: 'event[endtime(4i)]'
+    #   select '00', from: 'event[endtime(5i)]'
+
+    #   fill_in 'Eventpass', with: '1128'
+
+    #   click_on 'Create Event'
+    #   fill_in 'active_admin_comment[body]', with: 'comment1'
+    #   click_on 'Add Comment'
+    #   # sleep(2)
+    #   expect(page).to have_content('Comment was successfully created.')
+    #   # #sleep(2)
+    # end
+
+    # it 'Success Delete Comments' do
+    #   fill_in 'Title', with: 'title1'
+    #   fill_in 'Place', with: 'place1'
+    #   fill_in 'Description', with: 'des1'
+
+    #   # sleep(4)
+    #   select '2015', from: 'event[starttime(1i)]'
+    #   select 'November', from: 'event[starttime(2i)]'
+    #   select '2', from: 'event[starttime(3i)]'
+    #   select '10', from: 'event[starttime(4i)]'
+    #   select '00', from: 'event[starttime(5i)]'
+
+    #   select '2015', from: 'event[endtime(1i)]'
+    #   select 'November', from: 'event[endtime(2i)]'
+    #   select '2', from: 'event[endtime(3i)]'
+    #   select '12', from: 'event[endtime(4i)]'
+    #   select '00', from: 'event[endtime(5i)]'
+
+    #   fill_in 'Eventpass', with: '1128'
+
+    #   click_on 'Create Event'
+    #   fill_in 'active_admin_comment[body]', with: 'comment1'
+    #   click_on 'Add Comment'
+    #   click_on 'Delete Comment'
+    #   page.driver.browser.switch_to.alert.accept
+    #   # sleep(2)
+    #   expect(page).to have_content('Comment was successfully destroyed.')
+    #   # #sleep(2)
+    # end
 
     it 'Success Create Admin User' do
       click_on 'Admin Users'
@@ -480,6 +536,27 @@ RSpec.describe 'Admin Create Event', type: :system do
       expect(page).to have_content('Admin Users')
 
       # sleep(2)
+    end
+  end
+end
+
+RSpec.describe 'Home Page Date', type: :system do
+  describe 'Input Date' do
+    it 'Is older than 2 days' do
+      event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved', starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
+      event.save
+      visit events_path
+      expect(page).not_to have_content('Event in the Past')
+      sleep(2)
+      event.destroy
+    end
+    it 'Is in future more than 2 days' do
+      event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved', starttime: '2021-01-03 00:00:00', endtime: '2021-01-03 00:00:00', eventpass: 'pass3')
+      event.save
+      visit events_path
+      expect(page).to have_content('Event in the Future')
+      sleep(2)
+      event.destroy
     end
   end
 end
