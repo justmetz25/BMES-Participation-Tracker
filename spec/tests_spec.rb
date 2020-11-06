@@ -351,7 +351,7 @@ RSpec.describe 'Admin Create Event', type: :system do
 
       click_on 'Create Event'
       sleep(5)
-      eid = Event.all.size + 3
+      eid = Event.maximum(:id)
       visit new_participation_path(event_id: eid)
       sleep(5)
 
@@ -361,23 +361,8 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'participation[last_name]', with: 'guy'
       fill_in 'participation[uin]', with: '111111111'
       click_on 'commit'
-
-      # sleep(4)
-      select '2025', from: 'event[starttime(1i)]'
-      select 'November', from: 'event[starttime(2i)]'
-      select '2', from: 'event[starttime(3i)]'
-      select '10', from: 'event[starttime(4i)]'
-      select '00', from: 'event[starttime(5i)]'
-
-      select '2025', from: 'event[endtime(1i)]'
-      select 'November', from: 'event[endtime(2i)]'
-      select '2', from: 'event[endtime(3i)]'
-      select '12', from: 'event[endtime(4i)]'
-      select '00', from: 'event[endtime(5i)]'
       
       visit admin_event_path(id: eid)
-      #click_on 'Admin Login'
-
 
       click_on 'Delete Event'
       page.driver.browser.switch_to.alert.accept
