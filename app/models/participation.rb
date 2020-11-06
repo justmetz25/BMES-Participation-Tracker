@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Participation < ApplicationRecord
-
   validates_presence_of :event_id, :uin, :first_name, :last_name, :email
 
   def as_json(*)

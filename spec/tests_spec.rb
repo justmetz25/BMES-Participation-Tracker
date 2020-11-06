@@ -361,7 +361,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'participation[last_name]', with: 'guy'
       fill_in 'participation[uin]', with: '111111111'
       click_on 'commit'
-      
+
       visit admin_event_path(id: eid)
 
       click_on 'Delete Event'
@@ -528,7 +528,8 @@ end
 RSpec.describe 'Home Page Date', type: :system do
   describe 'Input Date' do
     it 'Is older than 2 days' do
-      event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved', starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
+      event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved',
+                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
       event.save
       visit events_path
       expect(page).not_to have_content('Event in the Past')
@@ -536,7 +537,8 @@ RSpec.describe 'Home Page Date', type: :system do
       event.destroy
     end
     it 'Is in future more than 2 days' do
-      event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved', starttime: '2021-01-03 00:00:00', endtime: '2021-01-03 00:00:00', eventpass: 'pass3')
+      event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved',
+                            starttime: '2021-01-03 00:00:00', endtime: '2021-01-03 00:00:00', eventpass: 'pass3')
       event.save
       visit events_path
       expect(page).to have_content('Event in the Future')
