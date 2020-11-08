@@ -29,7 +29,7 @@ ActiveAdmin.register_page 'Dashboard' do
           para 'Our organization is committed to Advancing Human Health and Well Being'
           para "To get started, select the 'Events' tab from the Navigation Bar to create a new event, or select " \
             "'Participations' to view member sign ins!"
-          li link_to("Click here to view the full instruction manual", ../views/help.html.erb)
+          li link_to("Click here to view the full instruction manual", "/help.html")
         end
       end
     end
