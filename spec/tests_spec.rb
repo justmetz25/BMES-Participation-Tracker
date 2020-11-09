@@ -351,7 +351,7 @@ RSpec.describe 'Admin Create Event', type: :system do
 
       click_on 'Create Event'
       sleep(5)
-      eid = Event.all.size + 3
+      eid = Event.maximum(:id)
       visit new_participation_path(event_id: eid)
       sleep(5)
 
@@ -362,22 +362,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'participation[uin]', with: '111111111'
       click_on 'commit'
 
-      # sleep(4)
-      select '2025', from: 'event[starttime(1i)]'
-      select 'November', from: 'event[starttime(2i)]'
-      select '2', from: 'event[starttime(3i)]'
-      select '10', from: 'event[starttime(4i)]'
-      select '00', from: 'event[starttime(5i)]'
-
-      select '2025', from: 'event[endtime(1i)]'
-      select 'November', from: 'event[endtime(2i)]'
-      select '2', from: 'event[endtime(3i)]'
-      select '12', from: 'event[endtime(4i)]'
-      select '00', from: 'event[endtime(5i)]'
-      
       visit admin_event_path(id: eid)
-      #click_on 'Admin Login'
-
 
       click_on 'Delete Event'
       page.driver.browser.switch_to.alert.accept
@@ -543,7 +528,8 @@ end
 RSpec.describe 'Home Page Date', type: :system do
   describe 'Input Date' do
     it 'Is older than 2 days' do
-      event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved', starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
+      event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved',
+                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
       event.save
       visit events_path
       expect(page).not_to have_content('Event in the Past')
@@ -551,7 +537,8 @@ RSpec.describe 'Home Page Date', type: :system do
       event.destroy
     end
     it 'Is in future more than 2 days' do
-      event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved', starttime: '2021-01-03 00:00:00', endtime: '2021-01-03 00:00:00', eventpass: 'pass3')
+      event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved',
+                            starttime: '2021-01-03 00:00:00', endtime: '2021-01-03 00:00:00', eventpass: 'pass3')
       event.save
       visit events_path
       expect(page).to have_content('Event in the Future')
