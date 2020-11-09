@@ -13,7 +13,7 @@ RSpec.describe 'API v1', type: :system do
                                                   {
                                                     'id' => 1,
                                                     'name' => 'Event Title',
-                                                    'start_time' => '2015-01-01T00:00:00.000Z'
+                                                    'start_time' => '2025-01-01T00:00:00.000Z'
                                                   }
                                                 ]
                                               })
@@ -30,7 +30,7 @@ RSpec.describe 'API v1', type: :system do
                                                   {
                                                     'id' => 1,
                                                     'name' => 'Event Title',
-                                                    'start_time' => '2015-01-01T00:00:00.000Z'
+                                                    'start_time' => '2025-01-01T00:00:00.000Z'
                                                   },
                                                   {
                                                     'id' => 2,
@@ -59,7 +59,7 @@ RSpec.describe 'API v1', type: :system do
                                                 ],
                                                 'id' => 1,
                                                 'name' => 'Event Title',
-                                                'start_time' => '2015-01-01T00:00:00.000Z'
+                                                'start_time' => '2025-01-01T00:00:00.000Z'
                                               })
     end
     it 'Invalid' do
@@ -92,7 +92,7 @@ RSpec.describe 'API v1', type: :system do
                                                 ],
                                                 'id' => 1,
                                                 'name' => 'Event Title',
-                                                'start_time' => '2015-01-01T00:00:00.000Z'
+                                                'start_time' => '2025-01-01T00:00:00.000Z'
                                               })
 
       n_participant.destroy
