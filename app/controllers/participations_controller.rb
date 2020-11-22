@@ -19,6 +19,11 @@ class ParticipationsController < ApplicationController
       redirect_to new_participation_path(event_id: @event_id), flash: { danger: 'No matching event found, please try '\
         'again.' }
     elsif @event.eventpass == params[:event_pass]
+      @verification = Participation.find_by email: participation_params[:email], event_id: participation_params[:event_id]
+      if !@verification.nil?
+        redirect_to events_path, flash: { danger: 'You have already signed into the event' }
+        return
+      end
       @participation = Participation.new(participation_params)
       @participation.save
       redirect_to events_path, flash: { success: 'You have successfully signed into the event.' }
