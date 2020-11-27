@@ -162,17 +162,6 @@ RSpec.describe 'Participation Page', type: :system do
       expect(message).to eq 'Please fill out this field.'
       # sleep(2)
     end
-    it 'UIN' do
-      visit events_path
-      click_link('Event Check-in')
-
-      fill_in('event_pass', with: '1')
-      click_button('commit')
-
-      message = page.find('#participation_uin').native.attribute('validationMessage')
-      expect(message).to eq 'Please fill out this field.'
-      # sleep(2)
-    end
     it 'First Name' do
       visit events_path
       click_link('Event Check-in')
