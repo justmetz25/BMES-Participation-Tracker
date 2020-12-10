@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-#Adding comment for CI/CS video
-#Adding comment2 for CI/CD video
+#Adding comment for Ci/Cd video
 
 module Api
   class V1Controller < ActionController::API
